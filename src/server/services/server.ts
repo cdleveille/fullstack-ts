@@ -11,10 +11,12 @@ import { router } from "../controllers";
 import { Config } from "../helpers/config";
 import { initSocket } from "../helpers/socket";
 import { Routes } from "../types/constants";
+import { connectToDatabase } from "./db";
 import { log } from "./log";
 
 export const startServer = async () => {
 	const app = express();
+	await connectToDatabase();
 
 	const logStream = fs.createWriteStream("combined.log", { flags: "a" });
 	app.use(morgan("combined", { stream: logStream }));
