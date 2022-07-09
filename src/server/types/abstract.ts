@@ -1,3 +1,5 @@
+import { FilterQuery, Model, PopulateOptions, QueryOptions } from "mongoose";
+
 export interface IResponse {
 	ok: boolean;
 	status: number;
@@ -5,7 +7,6 @@ export interface IResponse {
 }
 
 export interface IBase {
-	_id: string;
 	created_at: Date;
 	updated_at: Date;
 }
@@ -14,4 +15,27 @@ export interface IUser extends IBase {
 	username: string;
 	password: string;
 	email: string;
+}
+
+export interface IBaseModel<T extends IBase> extends Model<IBase> {
+	assertFindOne(filter?: FilterQuery<T>, options?: Options<T>, projection?: Projection): Promise<T>;
+	assertFind(filter?: FilterQuery<T>, options?: Options<T>, projection?: Projection): Promise<T[]>;
+	createOrUpdate(filter: FilterQuery<T>, doc: Partial<T>): Promise<T>;
+	assertExists(filter: FilterQuery<T>, options?: Options<T>): Promise<void>;
+	getCount(filter: FilterQuery<T>, options?: Options<T>): Promise<number>;
+}
+
+export type IUserModel = IBaseModel<IUser>;
+
+export type Projection = Record<string, 0 | 1>;
+
+export interface Options<T extends IBase> extends QueryOptions {
+	sort?: {
+		// eslint-disable-next-line no-unused-vars
+		[k in keyof Partial<T>]: 1 | -1 | number;
+	};
+	populate?: PopulateOptions[];
+	limit?: number;
+	skip?: number;
+	new?: boolean;
 }
