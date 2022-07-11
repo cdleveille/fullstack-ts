@@ -1,23 +1,8 @@
 import { FilterQuery, Model, PopulateOptions, QueryOptions } from "mongoose";
 
-export interface IResponse {
-	ok: boolean;
-	status: number;
-	data: any;
-}
+import { IBase, IUser } from "@shared/types/abstract";
 
-export interface IBase {
-	created_at: Date;
-	updated_at: Date;
-}
-
-export interface IUser extends IBase {
-	username: string;
-	password: string;
-	email: string;
-}
-
-export interface IBaseModel<T extends IBase> extends Model<IBase> {
+export interface IBaseModel<T extends IBase> extends Model<T> {
 	assertFindOne(filter?: FilterQuery<T>, options?: Options<T>, projection?: Projection): Promise<T>;
 	assertFind(filter?: FilterQuery<T>, options?: Options<T>, projection?: Projection): Promise<T[]>;
 	createOrUpdate(filter: FilterQuery<T>, doc: Partial<T>): Promise<T>;

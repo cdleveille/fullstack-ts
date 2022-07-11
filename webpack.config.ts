@@ -11,7 +11,7 @@ import { Config } from "./src/server/helpers/config";
 export default {
 	mode: Config.IS_PROD ? "production" : "development",
 	entry: {
-		main: path.resolve(__dirname, "src/client/app/index.ts")
+		main: path.resolve(__dirname, "src/client/app/index.tsx")
 	},
 	devtool: Config.IS_PROD ? false : "inline-source-map",
 	module: {
@@ -51,7 +51,7 @@ export default {
 		clean: true
 	},
 	resolve: {
-		extensions: [".ts", ".js"],
+		extensions: [".ts", ".tsx", ".js", ".jsx"],
 		alias: {
 			"socket.io-client": path.resolve(__dirname, "node_modules/socket.io-client/dist/socket.io.js")
 		}
