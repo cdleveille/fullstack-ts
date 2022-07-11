@@ -1,6 +1,8 @@
 import { model, Schema } from "mongoose";
 
-import { IBaseModel, IUser } from "../types/abstract";
+import { IUser } from "@shared/types/abstract";
+
+import { IBaseModel } from "../types/abstract";
 import { BaseSchema } from "./_base";
 
 const UserSchema = new Schema<IUser>({

@@ -23,7 +23,7 @@ socket.on("ping", () => {
 });
 socket.emit("ping");
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const root = ReactDOM.createRoot(document.getElementById("react-root") as HTMLElement);
 root.render(
 	<React.StrictMode>
 		<Index />
