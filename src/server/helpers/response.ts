@@ -13,9 +13,9 @@ export const sendSuccess = <T>(res: Response, data: T) => {
 };
 
 export const sendError = <T extends CommonError>(res: Response, error: T) => {
-	res.status(error.status).send({
+	res.status(error.status || 500).send({
 		ok: false,
-		status: error.status,
-		data: error.message
+		status: error.status || 500,
+		data: error.message || "Internal server error"
 	} as IResponse<string>);
 };
