@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
 
-import { IUser } from "@shared/types/abstract";
+import { IUser } from "@shared";
 
-import { IBaseModel } from "../types/abstract";
+import { IUserModel } from "../types/abstract";
 import { BaseSchema } from "./_base";
 
 const UserSchema = new Schema<IUser>({
@@ -20,4 +20,4 @@ const UserSchema = new Schema<IUser>({
 	}
 }).add(BaseSchema);
 
-export const User = model<IUser, IBaseModel<IUser>>("User", UserSchema);
+export const User = model<IUser, IUserModel>("User", UserSchema);

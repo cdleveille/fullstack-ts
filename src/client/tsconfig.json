@@ -14,11 +14,11 @@
     "types": [],
     "paths": {
       "*": ["../../node_modules/*"],
-      "@shared/*": ["../shared/*"]
+      "@shared": ["../shared"]
     },
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["**/server/*"],
   "references": [
     {

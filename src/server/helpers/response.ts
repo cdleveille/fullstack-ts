@@ -1,6 +1,6 @@
 import { Response } from "express";
 
-import { IResponse } from "@shared/types/abstract";
+import { IResponse } from "@shared";
 
 import { CommonError } from "../types/errors";
 

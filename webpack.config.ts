@@ -72,11 +72,14 @@ export default {
 	},
 	plugins: [
 		new InjectManifest({
-			swSrc: path.resolve(__dirname, "src/client/sw.ts")
+			swSrc: path.resolve(__dirname, "src/client/sw.ts"),
+			maximumFileSizeToCacheInBytes: 5000000
 		}),
 
 		new HtmlWebpackPlugin({
 			title: "fullstack-ts",
+			description: "MERN stack monorepo template with types shared between server and client.",
+			author: "Chris Leveille",
 			filename: "index.html",
 			template: path.resolve(__dirname, "src/client/_index.html")
 		}),

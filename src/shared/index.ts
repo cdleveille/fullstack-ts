@@ -8,6 +8,7 @@ export interface IBase {
 	created_at: Date;
 	updated_at: Date;
 }
+
 export interface IUser extends IBase {
 	username: string;
 	password: string;
