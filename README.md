@@ -1,6 +1,6 @@
 # fullstack-ts
 
-MERN stack monorepo template.
+MERN stack monorepo template with types shared between server and client.
 
 ## Prerequisites
 

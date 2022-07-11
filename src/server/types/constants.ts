@@ -12,5 +12,6 @@ export enum Env {
 
 export enum Routes {
 	root = "/",
-	api = "/api"
+	helloWorld = "/helloworld",
+	user = "/user"
 }

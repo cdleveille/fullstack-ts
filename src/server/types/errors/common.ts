@@ -2,7 +2,7 @@ export class CommonError extends Error {
 	public message: string;
 	public status: number;
 
-	constructor(message = "internal server error", status = 500) {
+	constructor(message = "Internal server error", status = 500) {
 		super(message);
 		this.message = message;
 		this.status = status;

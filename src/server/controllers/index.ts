@@ -1,19 +1,26 @@
 import { NextFunction, Request, Response, Router } from "express";
 
-import { IResponse } from "@shared/types/abstract";
-
+import { sendError, sendSuccess } from "../helpers/response";
+import { User } from "../models/user";
 import { Routes } from "../types/constants";
 
 export const router = Router();
 
-router.get(Routes.api, async (req: Request, res: Response, next: NextFunction) => {
+router.get(Routes.helloWorld, async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		return res.status(200).send({
-			ok: true,
-			status: 200,
-			data: "Hello World!"
-		} as IResponse<string>);
+		return sendSuccess(res, "Hello World!");
 	} catch (error) {
+		sendError(res, error);
+		next(error);
+	}
+});
+
+router.get(Routes.user, async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const user = await User.assertFindOne({ username: req.query.username });
+		return sendSuccess(res, user);
+	} catch (error) {
+		sendError(res, error);
 		next(error);
 	}
 });
