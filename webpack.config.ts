@@ -1,5 +1,6 @@
 /** https://webpack.js.org/configuration/ */
 
+import fs from "fs";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 import { Configuration } from "webpack";
@@ -7,6 +8,12 @@ import WebpackObfuscator from "webpack-obfuscator";
 import { InjectManifest } from "workbox-webpack-plugin";
 
 import { Config } from "./src/server/helpers/config";
+
+const packageJson = JSON.parse(fs.readFileSync("package.json").toString()) as {
+	name: string;
+	description: string;
+	author: string;
+};
 
 export default {
 	mode: Config.IS_PROD ? "production" : "development",
@@ -77,9 +84,9 @@ export default {
 		}),
 
 		new HtmlWebpackPlugin({
-			title: "fullstack-ts",
-			description: "MERN stack monorepo template with types shared between server and client.",
-			author: "Chris Leveille",
+			title: packageJson.name,
+			description: packageJson.description,
+			author: packageJson.author,
 			filename: "index.html",
 			template: path.resolve(__dirname, "src/client/_index.html")
 		}),

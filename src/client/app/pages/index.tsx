@@ -1,7 +1,7 @@
 import React from "react";
 
-import { HelloWorld } from "../components/HelloWorld";
+import { Header } from "../components/Header";
 
 export const Index = () => {
-	return <HelloWorld />;
+	return <Header text="Hello World!" />;
 };
