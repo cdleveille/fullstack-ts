@@ -66,7 +66,7 @@ const networkResponse = async (event: FetchEvent): Promise<Response> => {
 		if (event.request.method === "GET" && !event.request.url.includes("socket.io")) {
 			const cache = await caches.open(cacheName);
 			await trimCache(event, cache);
-			event.waitUntil(await cache.put(event.request, networkResponse.clone()));
+			event.waitUntil(cache.put(event.request, networkResponse.clone()));
 		}
 		return networkResponse;
 	} catch (error) {

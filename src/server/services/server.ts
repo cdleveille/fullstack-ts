@@ -10,7 +10,7 @@ import path from "path";
 import { router } from "../controllers";
 import { Config } from "../helpers/config";
 import { initSocket } from "../helpers/socket";
-import { Routes } from "../types/constants";
+import { Env, Routes } from "../types/constants";
 import { connectToDatabase } from "./db";
 import { log } from "./log";
 
@@ -47,6 +47,10 @@ export const startServer = async () => {
 	const httpServer = createServer(app);
 	initSocket(httpServer);
 	httpServer.listen(Config.PORT, () => {
-		log.info(`Server started${Config.IS_PROD ? "." : ` - listening on http://${Config.HOST}:${Config.PORT}`}`);
+		log.info(
+			`Server started in ${Config.IS_PROD ? Env.prod : Env.dev} mode${
+				Config.IS_PROD ? "." : ` - listening on http://${Config.HOST}:${Config.PORT}`
+			}`
+		);
 	});
 };
