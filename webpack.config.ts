@@ -120,5 +120,5 @@ export default {
 				},
 				["sw.js"]
 			)
-	].filter((n) => n)
+	].filter(n => n)
 } as Configuration;

@@ -10,7 +10,7 @@ const cacheName = "swcache_" + new Date().toISOString();
 
 const deleteOldCaches = async () => {
 	const keys = await caches.keys();
-	return keys.map(async (cache) => {
+	return keys.map(async cache => {
 		if (cache !== cacheName) {
 			return await caches.delete(cache);
 		}

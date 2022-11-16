@@ -3,4 +3,5 @@
 .env
 *.tsbuildinfo
 *.log
+*.lock
 .DS_Store
