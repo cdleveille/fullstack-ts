@@ -15,7 +15,12 @@
     "lib": ["es2019"],
     "paths": {
       "*": ["../../node_modules/*"],
-      "@shared": ["../shared"]
+      "@controllers": ["./controllers"],
+      "@helpers": ["./helpers"],
+      "@models": ["./models"],
+      "@services": ["./services"],
+      "@shared": ["../shared"],
+      "@types": ["./types"]
     },
     "moduleResolution": "node",
     "types": ["node"],

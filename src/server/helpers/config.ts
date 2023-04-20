@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { Env, Host } from "../types/constants";
+import { Env, Host } from "../types";
 
 export const Config = {
 	IS_PROD: <boolean>(process.env.NODE_ENV === Env.prod),

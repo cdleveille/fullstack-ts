@@ -14,7 +14,10 @@
     "types": [],
     "paths": {
       "*": ["../../node_modules/*"],
-      "@shared": ["../shared"]
+      "@components": ["./app/components"],
+      "@pages": ["./app/pages"],
+      "@shared": ["../shared"],
+      "@types": ["./app/types"]
     },
     "typeRoots": ["node_modules/@types"]
   },

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { Config } from "../helpers/config";
+import { Config } from "@helpers";
 
 export const connectToDatabase = async () => {
 	try {

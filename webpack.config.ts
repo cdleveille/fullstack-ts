@@ -18,14 +18,14 @@ const packageJson = JSON.parse(fs.readFileSync("package.json").toString()) as {
 export default {
 	mode: Config.IS_PROD ? "production" : "development",
 	entry: {
-		main: path.resolve(__dirname, "src/client/app/index.tsx")
+		main: path.resolve(__dirname, "./src/client/app/index.tsx")
 	},
 	devtool: Config.IS_PROD ? false : "inline-source-map",
 	module: {
 		rules: [
 			{
 				test: /\.[jt]sx?$/i,
-				include: path.resolve(__dirname, "src/client"),
+				include: path.resolve(__dirname, "./src/client"),
 				use: [
 					{
 						loader: "babel-loader",
@@ -40,12 +40,12 @@ export default {
 			},
 			{
 				test: /\.css$/i,
-				include: path.resolve(__dirname, "src/client"),
+				include: path.resolve(__dirname, "./src/client"),
 				use: ["style-loader", "css-loader"]
 			},
 			{
 				test: /\.(png|svg|jpg|jpeg|gif|webp|ttf)$/i,
-				include: path.resolve(__dirname, "src/client"),
+				include: path.resolve(__dirname, "./src/client"),
 				type: "asset/resource"
 			}
 		]
@@ -60,7 +60,10 @@ export default {
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".jsx"],
 		alias: {
-			"socket.io-client": path.resolve(__dirname, "node_modules/socket.io-client/dist/socket.io.js")
+			"socket.io-client": path.resolve(__dirname, "node_modules/socket.io-client/dist/socket.io.js"),
+			"@components": path.resolve(__dirname, "./src/client/app/components"),
+			"@pages": path.resolve(__dirname, "./src/client/app/pages"),
+			"@types": path.resolve(__dirname, "./src/client/app/types")
 		}
 	},
 	target: ["web", "es5"],
@@ -79,7 +82,7 @@ export default {
 	},
 	plugins: [
 		new InjectManifest({
-			swSrc: path.resolve(__dirname, "src/client/sw.ts"),
+			swSrc: path.resolve(__dirname, "./src/client/sw.ts"),
 			maximumFileSizeToCacheInBytes: 5000000
 		}),
 
@@ -88,7 +91,7 @@ export default {
 			description: packageJson.description,
 			author: packageJson.author,
 			filename: "index.html",
-			template: path.resolve(__dirname, "src/client/_index.html")
+			template: path.resolve(__dirname, "./src/client/_index.html")
 		}),
 
 		Config.IS_PROD &&

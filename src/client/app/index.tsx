@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { io } from "socket.io-client";
 
-import { Index } from "./pages";
+import { Index } from "@pages";
 
 window.addEventListener("load", async () => {
 	// @ts-ignore

@@ -7,12 +7,10 @@ import { createServer } from "http";
 import morgan from "morgan";
 import path from "path";
 
-import { router } from "../controllers";
-import { Config } from "../helpers/config";
-import { initSocket } from "../helpers/socket";
-import { Env, Routes } from "../types/constants";
-import { connectToDatabase } from "./db";
-import { log } from "./log";
+import { router } from "@controllers";
+import { Config, initSocket } from "@helpers";
+import { connectToDatabase, log } from "@services";
+import { Env, Routes } from "@types";
 
 export const startServer = async () => {
 	const app = express();

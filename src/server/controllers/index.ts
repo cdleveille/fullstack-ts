@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response, Router } from "express";
 
-import { sendError, sendSuccess } from "../helpers/response";
-import { User } from "../models/user";
-import { Routes } from "../types/constants";
+import { sendError, sendSuccess } from "@helpers";
+import { User } from "@models";
+import { Routes } from "@types";
 
 export const router = Router();
 
