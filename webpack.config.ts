@@ -25,7 +25,7 @@ export default {
 		rules: [
 			{
 				test: /\.[jt]sx?$/i,
-				include: path.resolve(__dirname, "./src/client"),
+				include: [path.resolve(__dirname, "./src/client"), path.resolve(__dirname, "./src/shared")],
 				use: [
 					{
 						loader: "babel-loader",
@@ -63,6 +63,7 @@ export default {
 			"socket.io-client": path.resolve(__dirname, "node_modules/socket.io-client/dist/socket.io.js"),
 			"@components": path.resolve(__dirname, "./src/client/app/components"),
 			"@pages": path.resolve(__dirname, "./src/client/app/pages"),
+			"@shared": path.resolve(__dirname, "./src/shared"),
 			"@types": path.resolve(__dirname, "./src/client/app/types")
 		}
 	},
