@@ -16,7 +16,7 @@ export const startServer = async () => {
 	const app = express();
 	await connectToDatabase();
 
-	const logStream = fs.createWriteStream("combined.log", { flags: "a" });
+	const logStream = fs.createWriteStream("requests.log", { flags: "a" });
 	app.use(morgan("combined", { stream: logStream }));
 	app.use(
 		helmet.contentSecurityPolicy({
@@ -34,7 +34,7 @@ export const startServer = async () => {
 	app.use(
 		cors({
 			origin: "*",
-			methods: ["GET"]
+			methods: ["GET", "POST", "PUT", "DELETE"]
 		})
 	);
 	app.use(Routes.root, router);
