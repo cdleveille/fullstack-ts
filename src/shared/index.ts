@@ -1,3 +1,10 @@
+export interface IConfig {
+	HOST: string;
+	IS_PROD: boolean;
+	MONGO_URI: string;
+	PORT: number;
+}
+
 export interface IResponse<T> {
 	ok: boolean;
 	status: number;

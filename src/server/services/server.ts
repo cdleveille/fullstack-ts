@@ -1,10 +1,8 @@
 import compression from "compression";
 import cors from "cors";
 import express from "express";
-import fs from "fs";
 import helmet from "helmet";
 import { createServer } from "http";
-import morgan from "morgan";
 import path from "path";
 
 import { router } from "@controllers";
@@ -15,9 +13,6 @@ import { Env, Routes } from "@types";
 export const startServer = async () => {
 	const app = express();
 	await connectToDatabase();
-
-	const logStream = fs.createWriteStream("requests.log", { flags: "a" });
-	app.use(morgan("combined", { stream: logStream }));
 	app.use(
 		helmet.contentSecurityPolicy({
 			directives: {

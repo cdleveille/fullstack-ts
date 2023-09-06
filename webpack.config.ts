@@ -47,8 +47,8 @@ export default {
 	},
 	output: {
 		path: path.resolve(__dirname, "build/client"),
-		filename: "[name].hash.[contenthash].bundle.js",
-		assetModuleFilename: "assets/[name].hash.[contenthash][ext]",
+		filename: "[name].[contenthash].js",
+		assetModuleFilename: "assets/[name].[contenthash][ext]",
 		sourceMapFilename: "[name].js.map",
 		clean: true
 	},
@@ -69,7 +69,7 @@ export default {
 			cacheGroups: {
 				vendor: {
 					test: /[\\/]node_modules[\\/]/,
-					name: "vendor",
+					name: "vendors",
 					chunks: "all",
 					priority: 10
 				}
@@ -77,10 +77,6 @@ export default {
 		}
 	},
 	plugins: [
-		new InjectManifest({
-			swSrc: path.resolve(__dirname, "./src/client/sw.ts"),
-			maximumFileSizeToCacheInBytes: 5000000
-		}),
 		new HtmlWebpackPlugin({
 			title: project.name,
 			description: project.description,
@@ -88,6 +84,11 @@ export default {
 			filename: "index.html",
 			template: path.resolve(__dirname, "./src/client/_index.html")
 		}),
+		Config.IS_PROD &&
+			new InjectManifest({
+				swSrc: path.resolve(__dirname, "./src/client/sw.ts"),
+				maximumFileSizeToCacheInBytes: 5000000
+			}),
 		Config.IS_PROD && new TerserPlugin(),
 		Config.IS_PROD &&
 			new WebpackObfuscator(
