@@ -2,6 +2,7 @@
 
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
+import TerserPlugin from "terser-webpack-plugin";
 import { Configuration } from "webpack";
 import WebpackObfuscator from "webpack-obfuscator";
 import { InjectManifest } from "workbox-webpack-plugin";
@@ -38,7 +39,7 @@ export default {
 				use: ["style-loader", "css-loader"]
 			},
 			{
-				test: /\.(png|svg|jpg|jpeg|gif|webp|ttf)$/i,
+				test: /\.(png|jpg|jpeg|gif|webp|ttf|woff|woff2|svg)$/i,
 				include: path.resolve(__dirname, "./src/client"),
 				type: "asset/resource"
 			}
@@ -80,7 +81,6 @@ export default {
 			swSrc: path.resolve(__dirname, "./src/client/sw.ts"),
 			maximumFileSizeToCacheInBytes: 5000000
 		}),
-
 		new HtmlWebpackPlugin({
 			title: project.name,
 			description: project.description,
@@ -88,7 +88,7 @@ export default {
 			filename: "index.html",
 			template: path.resolve(__dirname, "./src/client/_index.html")
 		}),
-
+		Config.IS_PROD && new TerserPlugin(),
 		Config.IS_PROD &&
 			new WebpackObfuscator(
 				{
@@ -118,5 +118,5 @@ export default {
 				},
 				["sw.js"]
 			)
-	].filter(n => n)
+	]
 } as Configuration;

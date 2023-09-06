@@ -4,6 +4,6 @@ interface IHeaderProps {
 	text: string;
 }
 
-export const Header: React.FC<IHeaderProps> = ({ text }) => {
+export const Header = ({ text }: IHeaderProps) => {
 	return <h1>{text}</h1>;
 };
